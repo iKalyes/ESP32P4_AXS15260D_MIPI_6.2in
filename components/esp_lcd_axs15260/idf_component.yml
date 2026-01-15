@@ -1,0 +1,10 @@
+# 🖥️ ESP LCD AXS15260 组件配置
+# SPDX-FileCopyrightText: 2025
+# SPDX-License-Identifier: Apache-2.0
+
+version: "1.0.0"
+description: "AXS15260 MIPI-DSI LCD driver component (452x1280, 2 Lane)"
+
+dependencies:
+  idf:
+    version: ">=5.3"

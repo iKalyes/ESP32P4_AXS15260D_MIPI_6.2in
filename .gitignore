@@ -1,0 +1,8 @@
+build/
+.cache/
+.vscode/
+.devcontainer/
+sdkconfig.old
+dependencies.lock
+AGENTS.md
+.bin
