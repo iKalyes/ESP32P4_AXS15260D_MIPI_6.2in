@@ -1,6 +1,7 @@
-# 🖥️ ESP32-P4 6.2寸 AXS15260 MIPI DSI LCD 演示项目
+## 🖥️ ESP32-P4 6.2寸 AXS15260D MIPI DSI LCD 示例代码库
 
-基于 ESP-IDF v5.5 的 6.2 寸 MIPI DSI LCD 显示和触摸屏演示项目。
+基于 ESP-IDF v5.5.2 的 6.2 寸 MIPI DSI LCD 显示和触摸屏示例代码库。    
+基于厂家提供的ESP32P4示例代码修改，使用LVGL V9.4图形库，启用了Espiessif PPA图形加速功能。
 
 ## 📋 硬件规格
 
@@ -18,12 +19,12 @@
 
 | 功能 | GPIO |
 |------|------|
-| 🔄 LCD 复位 | GPIO24 |
-| 💡 LCD 背光 | GPIO29 |
-| 📡 触摸 SDA | GPIO26 |
-| 📡 触摸 SCL | GPIO27 |
-| 🔄 触摸复位 | GPIO28 |
-| ⚡ 触摸中断 | GPIO25 |
+| 🔄 LCD 复位 | GPIO5 |
+| 💡 LCD 背光 | GPIO20 |
+| 📡 触摸 SDA | GPIO7 |
+| 📡 触摸 SCL | GPIO8 |
+| 🔄 触摸复位 | GPIO6 |
+| ⚡ 触摸中断 | GPIO21 |
 
 ## 📁 项目结构
 
@@ -42,73 +43,17 @@
     ├── espressif__esp_lvgl_port/  # 🎨 LVGL 移植层
     └── lvgl__lvgl/                # 🎨 LVGL 图形库
 ```
+## ⚙ ESP32P4 MIPI接口硬件参考（仅针对该屏幕）
 
-## 🚀 快速开始
+1.屏幕RST引脚和触摸TP_RST引脚相连，因此只需要执行一次复位即可；    
+2.屏幕VDD电源与触摸TP_VDD电源相连，最好使用同一个电源；    
+3.屏幕的手册有误，如果使用ESP32P4驱动，屏幕IOVCC电源为3.3V供电才可正常工作；    
+4.待添加。
 
-### 1️⃣ 环境要求
+<img width="866" height="736" alt="QQ20260116-010938" src="https://github.com/user-attachments/assets/5ba9de6c-3640-48b1-b5ea-92e53148bbb0" />
 
-- ESP-IDF v5.3+
-- ESP32-P4 开发板
+## 🖥️ 实际显示效果
 
-### 2️⃣ 编译
+![IMG_20260116_013717](https://github.com/user-attachments/assets/5d478eca-10ea-4156-bb4d-b27f4452dbc6)
 
-```bash
-idf.py build
-```
 
-### 3️⃣ 烧录
-
-```bash
-idf.py -p /dev/ttyUSB0 -b 2000000 flash monitor
-```
-
-## 🔧 组件 API
-
-### 🖥️ LCD 驱动
-
-```c
-#include "esp_lcd_axs15260.h"
-
-// 创建面板
-esp_lcd_new_panel_axs15260(io, &panel_cfg, &panel);
-
-// 获取 DPI 面板句柄 (用于 LVGL)
-esp_lcd_axs15260_get_dpi_panel(panel);
-```
-
-### 👆 触摸屏驱动
-
-```c
-#include "esp_lcd_touch_axs15260.h"
-
-// 创建触摸屏
-axs15260_touch_config_t cfg = {
-    .i2c_sda = GPIO_NUM_26,
-    .i2c_scl = GPIO_NUM_27,
-    .rst_gpio = GPIO_NUM_28,
-    .int_gpio = GPIO_NUM_25,
-    .i2c_port = I2C_NUM_0,
-};
-axs15260_touch_new(&cfg, &touch);
-
-// 读取触摸数据
-if (axs15260_touch_is_pressed(touch)) {
-    axs15260_touch_data_t data;
-    axs15260_touch_read(touch, &data);
-}
-```
-
-## 📝 更新日志
-
-| 日期 | 描述 |
-|------|------|
-| 2025-01-09 | ✅ 添加触摸屏驱动，集成到组件 |
-| 2025-01-09 | 🖥️ 初始版本，LCD 显示正常 |
-
-## 👤 作者
-
-**sila**
-
-## 📄 许可证
-
-Apache-2.0
