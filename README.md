@@ -50,7 +50,7 @@
 3.屏幕的手册有误，如果使用ESP32P4驱动，屏幕IOVCC电源为3.3V供电才可正常工作；    
 4.待添加。
 
-<img width="843" height="722" alt="QQ20260116-015056" src="https://github.com/user-attachments/assets/c0611965-3f1a-49f2-972e-9d5cb4cbd39b" />
+<img width="853" height="726" alt="QQ20260116-015056" src="https://github.com/user-attachments/assets/8b17439f-bbb8-497f-83f9-e85a95eee049" />
 
 ## 🖥️ 实际显示效果
 
